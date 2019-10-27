@@ -1,4 +1,7 @@
-# repair-my-ship
+# Repair My ‘Ship
+This is short for “Repair My Relationship”. It is a forum where users can post about their relationship issues, and others can chime in with advice on how to fix their problems.
+
+idea from freeCodeCamp.org
 
 ## Project setup
 ```

@@ -1,18 +1,44 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <transition name="slide">
+      <HomeHeader />
+    </transition>
+    <HomeArticles />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import HomeHeader from '@/components/Home/HomeHeader.vue';
+import HomeArticles from '@/components/Home/HomeArticles.vue';
+import db from "@/components/firebaseInit";
+import store from '@/store/index';
 
 export default {
   name: 'home',
   components: {
-    HelloWorld,
+    HomeHeader,
+    HomeArticles,
+  },
+  created(){
+    db.collection('users').get()
+    .then((res)=>{
+      let users = res.docs.map(user => user.data())
+      store.commit('setUsers', users);
+    })
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.home{
+  width: 100%;;
+  height: auto;
+}
+.slide-enter, .slide-leave-to {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+.slide-enter-active, .slide-leave-active{
+  transition: opacity 0.5s linear, transform 0.5s ease-in-out;
+}
+</style>
