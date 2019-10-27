@@ -31,7 +31,6 @@ export default {
         .then((result) => {
           let res = firebase.auth().currentUser;
           this.loading = false;
-          console.log(res.refreshToken)
           db.collection('users').doc(res.uid).onSnapshot((res) => {
             store.commit('setUser', res.data());
           });
