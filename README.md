@@ -1,9 +1,15 @@
-# Repair My ‘Ship
-This is short for “Repair My Relationship”. It is a forum where users can post about their relationship issues, and others can chime in with advice on how to fix their problems.
+# Repair My ‘Ship #
+Shortcut for “Repair My Relationship”. It is a forum where users can post about their relationship issues, and others can chime in with advice on how to fix their problems.
 
-idea from freeCodeCamp.org
+Idea from freeCodeCamp.org.
 
-## Project setup
+### Used technology: 
+* VueJS
+* VueX
+* vue-router
+* Firebase
+ ---
+### Project setup
 ```
 npm install
 ```
