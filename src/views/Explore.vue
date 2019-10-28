@@ -86,7 +86,7 @@ export default {
 
 <style scoped lang='scss'>
 .explore{
-  padding: 0 10vw;
+  padding: 0 10vw 50px;
 }
 h1{
   margin: 22px 0 10px;
@@ -102,7 +102,7 @@ h1{
   font-size: 15px;
 }
 .sort-list-move {
-  transition: transform .75s;
+  transition: all .75s;
 }
 
 .sort-list-enter-active, .sort-list-leave-active {
@@ -112,12 +112,12 @@ h1{
 .sort-list-enter {
   height: 0;
   opacity: 0;
-  transform: translateX(50px);
+  transform: translateY(-50px);
 }
 
 .sort-list-leave-to {
   height: 0;
   opacity: 0;
-  transform: translateX(-50px);
+  transform: translateX(50px);
 }
 </style>

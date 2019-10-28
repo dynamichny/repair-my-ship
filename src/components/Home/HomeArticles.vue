@@ -20,6 +20,7 @@
 import HomePost from './HomePost.vue';
 import db from "@/components/firebaseInit";
 import store from '@/store/index';
+import sortBy from 'lodash.sortby';
 
 export default {
   name: 'HomeArticles',
@@ -63,7 +64,8 @@ export default {
         articles.push(article)
       }
       this.postsCounter = articles.length;
-      this.posts = articles.reverse().slice(0, 5);
+      let newestPosts = sortBy(articles, (post)=> - post.create_time)
+      this.posts = newestPosts.slice(0,5);
       this.loading = false;
     });
       

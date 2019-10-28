@@ -4,11 +4,13 @@
       <img src="@/assets/logo.png" alt="Logo" style="width: 50px">
       <router-link to="/">Home</router-link>
       <router-link to="/explore">Explore</router-link>
+      
+      <input type="text" placeholder="Search" v-model="searchInput" class="search-input">
+
       <router-link to="/my-profile" v-if="isLogged" class="right">
         <img :src="user.photoURL" class="profile-photo">
         <span>My Profile</span>
       </router-link>
-      <input type="text" placeholder="Search" v-model="searchInput" class="search-input">
       <div v-if="!isLogged" class="right">
         <router-link to="/login">Login</router-link>
         <router-link to="/register">Register</router-link>

@@ -21,7 +21,7 @@ export default new Vuex.Store({
     },
     setSearchRegex(state, key) {
       state.searchRegex = key;
-    }
+    },
   },
   actions: {},
   modules: {},
