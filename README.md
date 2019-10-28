@@ -8,6 +8,8 @@ Idea from freeCodeCamp.org.
 * VueX
 * vue-router
 * Firebase
+### Demo
+https://wonderful-curie-ca25f9.netlify.com/
  ---
 ### Project setup
 ```
