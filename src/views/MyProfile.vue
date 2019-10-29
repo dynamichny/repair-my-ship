@@ -1,6 +1,8 @@
 <template>
   <div class="my-profile">
     <ChangePhoto />
+    <MyProfileForm />
+    <EditButton @click.native="updateEdit()" v-if="!edit" />
   </div>
 </template>
 
@@ -9,15 +11,15 @@ import store from '@/store/index';
 import db from "@/components/firebaseInit";
 import firebase from "firebase";
 import MyProfilePhotoChange from '@/components/MyProfile/MyProfilePhotoChange.vue';
+import MyProfileForm from '@/components/MyProfile/MyProfileForm.vue';
+import MyProfileEditButton from '@/components/MyProfile/MyProfileEditButton.vue';
 
 export default {
   name: 'MyProfile',
   components: {
     'ChangePhoto': MyProfilePhotoChange,
-  },
-  data(){
-    return {
-    }
+    MyProfileForm,
+    'EditButton':MyProfileEditButton,
   },
   computed: {
     user(){
@@ -26,12 +28,14 @@ export default {
     displayName(){
       return user.displayName;
     },
-  },
-  created(){
-    
-    this.generateRandomId();
+    edit(){
+      return store.state.edit;
+    }
   },
   methods: {
+    updateEdit(){
+      store.commit('edit');
+    }
   },
 };
 </script>

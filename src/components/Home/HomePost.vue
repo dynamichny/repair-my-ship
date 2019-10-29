@@ -52,12 +52,11 @@ export default {
 
 <style scoped lang='scss'>
 .home-post{
+  margin: 10px 0 0;
   width: 100%;
   display: flex;
   align-items: center;
   cursor: pointer;
-  position: relative;
-  margin: 10px 0 0;
   transition: all .3s;
   &:hover {
     transform: translateX(-10px);
@@ -69,6 +68,10 @@ export default {
     width: 55px;
   }
   padding: 10px 50px 10px 0;
+  @media (max-width: 500px){
+  padding: 10px 5vw 10px 0;
+
+  }
 }
 .title{
   margin: 6px 0;
@@ -77,8 +80,12 @@ export default {
   display: flex;
   align-items: flex-start;
   span{
-  margin: 0 20px 0 0;
-  color: #929292
+    margin: 0 20px 0 0;
+    color: #929292;
+    font-size: 14px;
+    @media (max-width: 500px){
+      font-size: 10px;
+    }
   }
 }
 .replies-icons{

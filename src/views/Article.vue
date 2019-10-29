@@ -3,7 +3,7 @@
     <h1>{{post.title}}</h1>
     <div class="info">
       <span class="author">
-        <img :src="author[0].photoURL" class="author-photo">
+        <img :src="photoURL" class="author-photo">
         by {{authorName}}
       </span>
       <Time :milisesc="post.create_time" />
@@ -38,10 +38,14 @@ export default {
       return this.$route.params.id;
     },
     author(){
-      return this.users.filter(user => this.post.author_id == user.uid);
+      let author = this.users.filter(user => this.post.author_id == user.uid)
+      return author[0];
     },
     authorName(){
-      return this.author[0].displayName;
+      return this.author ? this.author.displayName : '';
+    },
+    photoURL(){
+      return this.author ? this.author.photoURL : '';
     }
   },
   data(){
@@ -82,6 +86,9 @@ export default {
 }
 h1{
   margin: 25px 0 5px;
+}
+h2{
+  color: rgb(167, 167, 167);
 }
 .info{
   display: flex;

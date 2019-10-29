@@ -1,5 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import {
+  stat
+} from 'fs';
 
 Vue.use(Vuex);
 
@@ -10,6 +13,7 @@ export default new Vuex.Store({
     articlesCounter: 0,
     users: null,
     searchRegex: '',
+    edit: false,
   },
   mutations: {
     setUser(state, usr) {
@@ -21,6 +25,9 @@ export default new Vuex.Store({
     },
     setSearchRegex(state, key) {
       state.searchRegex = key;
+    },
+    edit(state) {
+      state.edit = !state.edit;
     },
   },
   actions: {},

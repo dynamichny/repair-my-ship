@@ -92,6 +92,12 @@ padding: 10px 10vw;
   border-radius: 35px;
   font-size: 14px;
   cursor: pointer;
+  transition: all .3s;
+  border: 2px solid #5944fd;
+  &:hover{
+    background: white;
+    color: #5944fd;
+  }
 }
 .view-all{
   color: rgba(0, 0, 0, .4);

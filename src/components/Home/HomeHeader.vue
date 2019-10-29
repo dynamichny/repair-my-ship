@@ -18,5 +18,8 @@ export default {
   font-weight: 300;
   font-size: 40px;
   padding: 50px 10vw;
+  @media (max-width: 480px){
+    font-size: 30px;
+  }
 }
 </style>

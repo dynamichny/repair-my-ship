@@ -1,17 +1,19 @@
 <template>
   <div class="profile_photo">
     <img :src="user.photoURL" class="photo">
-    <form @submit.prevent="handlePhotoUpload()">
-      <label>
-        <img src="@/assets/upload.svg" alt="" style="width: 25px">
-        Select Photo
-        <input type="file" accept="image/*" ref="file" @change="isFile = true">
-      </label>
-      <button type="submit" :disabled="!isFile">
-        <p v-if="!uploading">Upload photo</p>
-        <img src="@/assets/loading_black.svg" alt="Loadinig..." v-else style="height:40px; margin: 0;">
-      </button>
-    </form>
+    <transition name="show">
+      <form @submit.prevent="handlePhotoUpload()" v-if="edit">
+        <label >
+          <img src="@/assets/upload.svg" alt="" style="width: 25px">
+          <p>Select Photo</p>
+          <input type="file" accept="image/*" ref="file" @change="isFile = true">
+        </label>
+        <button type="submit" :disabled="!isFile">
+          <p v-if="!uploading">Upload photo</p>
+          <img src="@/assets/loading_black.svg" alt="Loadinig..." v-else style="height:40px; margin: 0;">
+        </button>
+      </form>
+    </transition>
   </div>
 </template>
 
@@ -27,12 +29,16 @@ export default {
       uploading: false,
       randomId: '',
       isFile: false,
+
     }
   },
   computed: {
     user(){
       return store.state.user; 
-    }
+    },
+    edit(){
+      return store.state.edit;
+    },
   },
   mounted(){
     if(store.state.isLogged == false){
@@ -69,16 +75,20 @@ export default {
 <style scoped lang='scss'>
 .profile_photo{
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
+  transition: all .3s;
   .photo{
-    margin: 0 70px;
+    transition: all .3s;
+    margin: 0 0 30px;
     width: 200px;
     border-radius: 50%;
     border: 1px solid black;
   }
   input{
     display: none;
+    
   }
   label{
     width: 200px;
@@ -91,23 +101,42 @@ export default {
     padding: 6px 12px;
     border-radius: 8px;
     cursor: pointer; 
+    img{
+      margin: 0 7px 0 0;
+    }
+    p{
+      margin: 0;
+    }
   }
   button{
     box-sizing: border-box;
     width: 200px;
     height: 50px;
-    margin: 20px 0;
+    margin: 15px auto 0;
     border: none;
     border-radius: 8px;
     background: black;
     transition: all .3s;
     color: white;
     cursor: pointer;
+    font-size: 16px;
     &:disabled{
       background: gray;
       cursor: default;
 
     }
   }
+}
+.show-enter{
+  transform: translateY(-50px);
+  opacity: 0;
+} 
+.show-leave-to {
+  transform: translateY(-50px) scaleY(0);
+  opacity: 0;
+  
+}
+.show-enter-active, .show-leave-active{
+  transition: all .3s;
 }
 </style>

@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    <transition name="slide">
-      <HomeHeader />
-    </transition>
+    <HomeHeader />
     <HomeArticles />
   </div>
 </template>
@@ -31,7 +29,7 @@ export default {
 
 <style lang="scss" scoped>
 .home{
-  width: 100%;;
+  width: 100%;
   height: auto;
 }
 .slide-enter, .slide-leave-to {

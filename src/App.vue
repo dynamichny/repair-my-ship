@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <div id="nav">
-      <img src="@/assets/logo.png" alt="Logo" style="width: 50px">
       <router-link to="/">Home</router-link>
       <router-link to="/explore">Explore</router-link>
       
@@ -11,10 +10,12 @@
         <img :src="user.photoURL" class="profile-photo">
         <span>My Profile</span>
       </router-link>
-      <div v-if="!isLogged" class="right">
-        <router-link to="/login">Login</router-link>
+
+      <div class="right" v-if="!isLogged">
+        <router-link to="/login" >Login</router-link>
         <router-link to="/register">Register</router-link>
       </div>
+
     </div>
 
     <transition  name="view-change" mode="out-in">
@@ -53,11 +54,12 @@ export default {
 
 <style lang="scss">
 body{
+  width: 100vw;
   margin: 0;
   padding: 0;
 }
 #app {
-  font-family: 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
 }
 
 #nav {
@@ -67,10 +69,13 @@ body{
   align-items: center;
   background: #f8f8f8;
   font-size: 20px;
+  justify-content: center;
+  @media (max-width: 900px){
+    }
 
   a {
     font-weight: bold;
-    margin: 0 0 0 40px;
+    margin: 5px 20px;
     text-decoration: none;
     font-weight: 400;
     color: black;
@@ -84,6 +89,9 @@ body{
     margin-left: auto;
     display: flex;
     align-items: center;
+    @media (max-width: 800px){
+      margin: 5px auto;
+    }
   }
   .profile-photo{
     width: 30px;
@@ -111,5 +119,9 @@ body{
 
 .view-change-enter-active, .view-change-leave-active{
   transition: opacity 0.25s linear, transform 0.25s cubic-bezier(0.25, 0.85, .98, 1);
+}
+
+button{
+  font-family: 'Montserrat', 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
 }
 </style>

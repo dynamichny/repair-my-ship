@@ -25,11 +25,10 @@ export default {
     margin: 0 0 0 -10px;
     border: 4px solid white;
     border-radius: 50%;
-    width: 25px;
-    height: 25px;
+    height: 20px;
     img{
       border-radius: 50%;
-      width: 25px;
+      width: 20px;
     }
   }
 </style>

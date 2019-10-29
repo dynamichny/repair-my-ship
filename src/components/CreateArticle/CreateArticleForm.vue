@@ -80,12 +80,19 @@ label{
 }
 
 .button-submit{
-  color: white;
-  background: #5944fd;
+  color: #5944fd;
+  background: white;
   padding: 9px 20px;
   border-radius: 35px;
   font-size: 14px;
   cursor: pointer;
-  border: none;
+  transition: all .3s;
+  border: 2px solid #5944fd;
+  width: 250px;
+  margin: 0 auto;
+  &:hover{
+    color: white;
+    background: #5944fd;
+  }
 }
 </style>
