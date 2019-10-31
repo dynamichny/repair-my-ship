@@ -1,6 +1,6 @@
 <template>
   <div class="profile_photo">
-    <img :src="user.photoURL" class="photo">
+    <div class="photo" :style="styleObj"></div>
     <transition name="show">
       <form @submit.prevent="handlePhotoUpload()" v-if="edit">
         <label >
@@ -29,7 +29,6 @@ export default {
       uploading: false,
       randomId: '',
       isFile: false,
-
     }
   },
   computed: {
@@ -39,7 +38,13 @@ export default {
     edit(){
       return store.state.edit;
     },
+    styleObj(){
+      return {
+        background: `url(${this.user.photoURL}) center center/cover no-repeat`,
+      }
+    },
   },
+  
   mounted(){
     if(store.state.isLogged == false){
       this.$router.push({ name: 'Login' });  
@@ -61,8 +66,11 @@ export default {
         alert('Uploading faiiled.')
       }, ()=>{
         this.uploading = false;
-        this.user.photoURL = `https://firebasestorage.googleapis.com/v0/b/repair-my-ship-af8c0.appspot.com/o/profilePhotos%2F${fileName}?alt=media`;
-        db.collection('users').doc(this.user.uid).update(Object.assign({}, this.user));
+        this.user.photoURL = `https://firebasestorage.googleapis.com/v0/b/repairmyship-896ee.appspot.com/o/profilePhotos%2F${fileName}?alt=media`;
+        db.collection('users').doc(this.user.uid).update(Object.assign({}, this.user))
+        .then(()=>{
+          store.commit('updateUser', this.user);
+        })
       });
     },
     generateRandomId(){
@@ -80,11 +88,12 @@ export default {
   align-items: center;
   transition: all .3s;
   .photo{
-    transition: all .3s;
     margin: 0 0 30px;
     width: 200px;
+    height: 200px;
     border-radius: 50%;
     border: 1px solid black;
+                      
   }
   input{
     display: none;
@@ -127,16 +136,21 @@ export default {
     }
   }
 }
+form{
+  max-height: 300px;
+}
 .show-enter{
   transform: translateY(-50px);
   opacity: 0;
+  max-height: 0
 } 
 .show-leave-to {
-  transform: translateY(-50px) scaleY(0);
+  transform: translateY(-50px);
   opacity: 0;
+  max-height: 0
   
 }
 .show-enter-active, .show-leave-active{
-  transition: all .3s;
+  transition: all .5s;
 }
 </style>

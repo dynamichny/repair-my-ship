@@ -3,7 +3,7 @@
     <h1>{{post.title}}</h1>
     <div class="info">
       <span class="author">
-        <img :src="photoURL" class="author-photo">
+        <span :style="styleObj" class="author-photo"></span>
         by {{authorName}}
       </span>
       <Time :milisesc="post.create_time" />
@@ -46,7 +46,12 @@ export default {
     },
     photoURL(){
       return this.author ? this.author.photoURL : '';
-    }
+    },
+    styleObj(){
+      return {
+        background: `url(${this.photoURL}) center center/cover no-repeat`,
+      }
+    },
   },
   data(){
     return {
@@ -103,6 +108,7 @@ h2{
   .author-photo{
     margin: 0 7px 0 0;
     width: 30px;
+    height: 30px;
     border-radius: 50%;
   }
 }

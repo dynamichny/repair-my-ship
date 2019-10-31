@@ -7,7 +7,7 @@
       <input type="text" placeholder="Search" v-model="searchInput" class="search-input">
 
       <router-link to="/my-profile" v-if="isLogged" class="right">
-        <img :src="user.photoURL" class="profile-photo">
+        <span :style="styleObj" class="profile-photo"></span>
         <span>My Profile</span>
       </router-link>
 
@@ -34,7 +34,12 @@ export default {
     },
     user(){
       return store.state.user;
-    }
+    },
+    styleObj(){
+      return {
+        background: `url(${this.user.photoURL}) center center/cover no-repeat`,
+      }
+    },
   },
   data(){
     return{
@@ -95,6 +100,7 @@ body{
   }
   .profile-photo{
     width: 30px;
+    height: 30px;
     border-radius: 50%;
     margin: 0 10px;
   }

@@ -29,6 +29,9 @@ export default new Vuex.Store({
     edit(state) {
       state.edit = !state.edit;
     },
+    updateUser(state, data) {
+      state.user = data;
+    }
   },
   actions: {},
   modules: {},

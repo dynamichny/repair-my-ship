@@ -1,8 +1,6 @@
 <template>
   <div class="home-post" @click="goToArticle(data.id)">
-    <div class="profile-photo">
-      <img :src="data.creator[0].photoURL" >
-    </div>
+    <div class="profile-photo" :style="styleObj"></div>
     <div class="content">
       <h3 class="title">{{data.title}}</h3>
       <div class="bottom">
@@ -41,6 +39,11 @@ export default {
       });
       return individualCommentors;
     },
+    styleObj(){
+      return {
+        background: `url(${this.data.creator[0].photoURL}) center center/cover no-repeat`,
+      }
+    },
   },
   methods: {
       goToArticle(id) {
@@ -58,19 +61,21 @@ export default {
   align-items: center;
   cursor: pointer;
   transition: all .3s;
+  padding: 5px;
+  border-radius: 15px;
   &:hover {
     transform: translateX(-10px);
+    background: #f8f8f8;
   }
 }
 .profile-photo{
-  img{
-    border-radius: 50%;
-    width: 55px;
-  }
-  padding: 10px 50px 10px 0;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  box-sizing: border-box;
+  margin: 10px 50px 10px 0;
   @media (max-width: 500px){
-  padding: 10px 5vw 10px 0;
-
+    margin: 10px 5vw 10px 0;
   }
 }
 .title{

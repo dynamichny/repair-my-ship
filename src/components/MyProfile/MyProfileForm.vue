@@ -5,7 +5,7 @@
       <div class="name">
         <div class="trans-group">
           <transition name="show">
-            <span v-if="!edit">{{this.user.displayName}}</span>
+            <span v-if="!edit" class="name-text">{{this.user.displayName}}</span>
           </transition>
           <transition name="show">
             <input type="text" name="displayName" v-model="displayName" v-if="edit">
@@ -44,10 +44,12 @@ export default {
   },
   methods: {
     handleSave(){
-      if(this.displayName.length > 0){
+      if(this.displayName.length > 0 && this.displayName != this.user.displayName){
         let user = this.user;
         user.displayName = this.displayName;
         db.collection('users').doc(this.user.uid).update(user);
+        store.commit('edit');
+      } else{
         store.commit('edit');
       }
     },
@@ -83,7 +85,7 @@ export default {
   transition: all .3s;
   font-family: 'Montserrat', 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
   cursor: pointer;
-  margin: 50px auto;
+  margin: 20px auto;
   &:hover{
     background: #1ecd97;
     color: white;
@@ -92,9 +94,13 @@ export default {
 
 p{
   margin: 0;
+  
 }
 .label{
   margin: 10px;
+}
+.name-text{
+  height: 37px;
 }
 
 input[name="displayName"]{
