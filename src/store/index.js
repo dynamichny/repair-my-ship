@@ -16,9 +16,12 @@ export default new Vuex.Store({
     edit: false,
   },
   mutations: {
-    setUser(state, usr) {
-      state.user = usr;
-      state.isLogged = true;
+    setUser(state, {
+      user,
+      isL
+    }) {
+      state.user = user;
+      state.isLogged = isL;
     },
     setUsers(state, usrs) {
       state.users = usrs;

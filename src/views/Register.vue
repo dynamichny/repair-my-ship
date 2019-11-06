@@ -50,7 +50,7 @@ export default {
               let user = new User(res.email, res.displayName, res.photoURL, res.uid)
               db.collection('users').doc(res.uid).set(Object.assign({}, user));
               db.collection('users').doc(res.uid).onSnapshot((res) => {
-                store.commit('setUser', res.data());
+                store.commit('setUser', {user: res.data(), isL: true });
               });
               this.$router.push({ path: '/' });
             })

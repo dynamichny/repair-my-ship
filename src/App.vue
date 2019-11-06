@@ -1,21 +1,11 @@
 <template>
   <div id="app">
+
     <div id="nav">
       <router-link to="/">Home</router-link>
       <router-link to="/explore">Explore</router-link>
-      
       <input type="text" placeholder="Search" v-model="searchInput" class="search-input">
-
-      <router-link to="/my-profile" v-if="isLogged" class="right">
-        <span :style="styleObj" class="profile-photo"></span>
-        <span>My Profile</span>
-      </router-link>
-
-      <div class="right" v-if="!isLogged">
-        <router-link to="/login" >Login</router-link>
-        <router-link to="/register">Register</router-link>
-      </div>
-
+      <Authentication />
     </div>
 
     <transition  name="view-change" mode="out-in">
@@ -26,20 +16,11 @@
 
 <script>
 import store from '@/store/index';
+import Authentication from '@/components/Nav/Authentication.vue';
 export default {
   name: 'App',
-  computed: {
-    isLogged(){
-      return store.state.isLogged;
-    },
-    user(){
-      return store.state.user;
-    },
-    styleObj(){
-      return {
-        background: `url(${this.user.photoURL}) center center/cover no-repeat`,
-      }
-    },
+  components: {
+    Authentication,
   },
   data(){
     return{
@@ -75,6 +56,8 @@ body{
   background: #f8f8f8;
   font-size: 20px;
   justify-content: center;
+  position: relative;
+  z-index: 100;
   @media (max-width: 900px){
     }
 
@@ -89,20 +72,6 @@ body{
       font-weight: 900;
       text-decoration: none;
     }
-  }
-  .right{
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    @media (max-width: 800px){
-      margin: 5px auto;
-    }
-  }
-  .profile-photo{
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    margin: 0 10px;
   }
 }
 

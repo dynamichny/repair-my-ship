@@ -32,7 +32,7 @@ export default {
           let res = firebase.auth().currentUser;
           this.loading = false;
           db.collection('users').doc(res.uid).onSnapshot((res) => {
-            store.commit('setUser', res.data());
+            store.commit('setUser', {user: res.data(), isL: true });
           });
           this.$router.push({ path: '/' });
         })
@@ -79,8 +79,9 @@ form{
   margin: auto;
   cursor: pointer;
   box-sizing: border-box;
+  overflow: hidden;
   img{
-      height: 45px;
+      height: 40px;
   }
 }
 </style>
